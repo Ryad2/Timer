@@ -16,9 +16,6 @@ stw      t4,     16(sp)
 stw      t5,     20(sp)
 stw      t6,     24(sp)
 
-rdctl		t1,		status
-beq		    t1,		zero,		return_from_exception
-
 rdctl		t0,		ipending ; read the ipending register to identify the source
 slli		t0,		t0,		29
 blt		    t0,		zero,		buttons_routine ; call the corresponding routine
@@ -29,13 +26,10 @@ br		return_from_exception
 
 buttons_routine:
 
-    addi    t2,      zero,   4
     addi    t3,      zero,   3
-    wrctl	ienable,		t2
-
-    ldw      t0,    4+BUTTONS(zero)
+    ldw     t0,     4+BUTTONS(zero)
     stw		zero,	4+BUTTONS(zero)
-    bge      t0,    t3,   return_from_exception
+    bge     t0,    t3,   return_from_exception
 
     slli		t0,		t0,		30
     blt		t0,		zero,		increment
@@ -45,28 +39,25 @@ buttons_routine:
     br return_from_exception
     
     increment:
-    stw      t1,         LEDS(zero)
+    ldw      t1,         LEDS(zero)
     addi     t1,         t1,   1
     stw      t1,         LEDS(zero)
     br		return_from_exception
     
     decrement:
-    stw     t1,         LEDS(zero)
+    ldw     t1,         LEDS(zero)
     addi    t1,         t1,   -1
-    stw      t1,         4+LEDS(zero)
+    stw     t1,        LEDS(zero)
     br		return_from_exception
 
 timer_routine:
-
-    addi    t2,      zero,   5
-    wrctl	ienable,		t2
     
     ldw      t1,         4+LEDS(zero)
     addi     t1,         t1,   1
     stw      t1,         4+LEDS(zero)
 
-
 return_from_exception:
+
     ldw      ra,     0(sp) ; restore the registers from the stack
     ldw      t1,     4(sp)
     ldw      t2,     8(sp)
