@@ -55,6 +55,8 @@ timer_routine:
     ldw      t1,         4+LEDS(zero)
     addi     t1,         t1,   1
     stw      t1,         4+LEDS(zero)
+    stw		zero,		TIMER+12(zero)
+    
 
 return_from_exception:
 
@@ -76,6 +78,9 @@ main:
     
     addi		t0,		zero,		999
     stw		    t0,		TIMER+4(zero)
+    addi		t0,		zero,		11
+    stw		    t0,		TIMER+8(zero)
+    
 
     stw		zero,		LEDS(zero)
     stw		zero,		LEDS+4(zero)
