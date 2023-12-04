@@ -9,12 +9,12 @@ interrupt_handler:
 
 addi     sp,     sp,     -28; save the registers to the stack
 stw      ra,     0(sp)
-stw      t1,     4(sp)
-stw      t2,     8(sp)
-stw      t3,     12(sp)
-stw      t4,     16(sp)
-stw      t5,     20(sp)
-stw      t6,     24(sp)
+stw      t0,     4(sp)
+stw      t1,     8(sp)
+stw      t2,     12(sp)
+stw      t3,     16(sp)
+stw      t4,     20(sp)
+stw      t5,     24(sp)
 
 rdctl		t0,		ipending ; read the ipending register to identify the source
 slli		t0,		t0,		29
@@ -61,12 +61,12 @@ timer_routine:
 return_from_exception:
 
     ldw      ra,     0(sp) ; restore the registers from the stack
-    ldw      t1,     4(sp)
-    ldw      t2,     8(sp)
-    ldw      t3,     12(sp)
-    ldw      t4,     16(sp)
-    ldw      t5,     20(sp)
-    ldw      t6,     24(sp)
+    ldw      t0,     4(sp)
+    ldw      t1,     8(sp)
+    ldw      t2,     12(sp)
+    ldw      t3,     16(sp)
+    ldw      t4,     20(sp)
+    ldw      t5,     24(sp)
     addi     sp,     sp,     28
     
     addi    ea,     ea,     -4 ; correct the exception return address

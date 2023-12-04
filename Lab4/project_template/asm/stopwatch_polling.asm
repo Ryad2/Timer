@@ -14,7 +14,71 @@ stw t0, LFSR(zero)
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 ; WRITE YOUR CODE AND CONSTANT DEFINITIONS HERE
+.equ		CYCLES_100MS,		24999
 
+main:
+    addi		sp,		zero,		LEDs
+    addi		s0,		zero,		CYCLES_100MS
+    slli		s0,		s0,		1
+    addi		s1,		zero,		0
+
+    increment_loop:
+        addi    s0,     s0,       -1
+        add    zero,     zero,       zero
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero   
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero 
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero  
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero  
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero  
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero  
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero  
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero 
+
+        ldw     t0,     BUTTON(zero)
+        add    zero,     zero,       zero
+        add    zero,     zero,       zero 
+
+        beq     s0,     zero,     increment_end
+        jmpi    increment_loop
+    
+    increment_end:
+        addi		s1,		s1,		1
+        addi		s0,		zero,   CYCLES_100MS
+        slli		s0,		s0,		1
+        add		    a0,		s1,		zero
+        
+        ldw     t0,     4+BUTTON(zero)
+        stw		zero,	4+BUTTON(zero)
+        slli	t0,		t0,		31
+        blt		t0,		zero,		spend_time
+        
+        call		display
+        br		increment_loop
+        
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; DO NOT CHANGE ANYTHING BELOW THIS LINE
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

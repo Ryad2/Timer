@@ -17,9 +17,121 @@ main:
 ; DO NOT CHANGE ANYTHING ABOVE THIS LINE
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+    addi        sp,     sp,     LEDs
+    addi		t0,		zero,		1
+    wrctl		status,		t0
+    addi		t0,		zero,		5
+    wrctl	    ienable,		t0
+    
+    addi        t0,		zero,		1
+    slli		t0,		zero,		22
+    addi        t0,		t0,		805695
+    stw         t0,		TIMER(zero)
+    
+    loop:
+        
+        br loop
     ; WRITE YOUR CONSTANT DEFINITIONS AND main HERE
 
+.equ		COUNTER,		0x1004
+
+
 interrupt_handler:
+
+    addi     sp,     sp,     -84; save the registers to the stack
+    stw      ra,     0(sp)
+    stw      s0,     4(sp)
+    stw      s1,     8(sp)
+    stw      s2,     12(sp)
+    stw      s3,     16(sp)
+    stw      s4,     20(sp)
+    stw      s5,     24(sp)
+    stw      s6,     28(sp)
+    stw      s7,     32(sp)
+    stw      t0,     36(sp)
+    stw      t1,     40(sp)
+    stw      t2,     44(sp)
+    stw      t3,     48(sp)
+    stw      t4,     52(sp)
+    stw      t5,     56(sp)
+    stw      t6,     60(sp)
+    stw      t7,     64(sp)
+    stw      a0,     68(sp)
+    stw      a1,     72(sp)
+    stw      a2,     76(sp)
+    stw      a3,     80(sp)
+
+    rdctl		t0,		ipending ; read the ipending register to identify the source
+    slli		t0,		t0,		29
+    blt		    t0,		zero,		buttons_routine ; call the corresponding routine
+    slli		t0,		t0,		2
+    blt		    t0,		zero,		timer_routine
+
+    br		return_from_exception
+
+    buttons_routine:
+
+        ldw     t0,     4+BUTTONS(zero)
+        stw		zero,	4+BUTTONS(zero)
+
+        slli		t0,		t0,		31
+        blt		t0,		zero,		spend_time_label
+
+        br return_from_exception
+
+        spend_time_label:
+        addi		sp,		sp,		-4
+        stw		ea,		0(sp)
+        
+        addi		t0,		zero,		1
+        wrctl		status,		t0
+        
+        call		spend_time
+        
+        wrctl		status,		zero
+        ldw		ea,		0(sp)
+        addi		sp,		sp,		4
+        
+        br return_from_exception
+
+    timer_routine:
+        ldw     t0,     COUNTER(zero)
+        addi    t0,     t0,     1
+        stw     t0,     COUNTER(zero)
+        add    a0,     t0,   zero
+        call    display
+        ;increment timer
+
+
+    return_from_exception:
+
+        ldw      ra,     0(sp)
+        ldw      s0,     4(sp)
+        ldw      s1,     8(sp)
+        ldw      s2,     12(sp)
+        ldw      s3,     16(sp)
+        ldw      s4,     20(sp)
+        ldw      s5,     24(sp)
+        ldw      s6,     28(sp)
+        ldw      s7,     32(sp)
+        ldw      t0,     36(sp)
+        ldw      t1,     40(sp)
+        ldw      t2,     44(sp)
+        ldw      t3,     48(sp)
+        ldw      t4,     52(sp)
+        ldw      t5,     56(sp)
+        ldw      t6,     60(sp)
+        ldw      t7,     64(sp)
+        ldw      a0,     68(sp)
+        ldw      a1,     72(sp)
+        ldw      a2,     76(sp)
+        ldw      a3,     80(sp)
+
+        addi     sp,     sp,     84
+
+        addi    ea,     ea,     -4 ; correct the exception return address
+        eret
+    
     ; WRITE YOUR INTERRUPT HANDLER HERE
 
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
