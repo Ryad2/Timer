@@ -1,5 +1,5 @@
 Flow report for GECKO
-Mon Dec 04 14:07:58 2023
+Wed Dec 06 14:31:35 2023
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,7 +40,7 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Mon Dec 04 14:07:58 2023       ;
+; Flow Status                        ; Successful - Wed Dec 06 14:31:35 2023       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; GECKO                                       ;
 ; Top-level Entity Name              ; GECKO                                       ;
@@ -108,7 +108,33 @@ refer to the applicable agreement for further details.
 ; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
 ; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
 ; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
-; Total                ; 00:00:55     ; --                      ; --                  ; 00:01:19                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4736 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4736 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4736 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4735 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:02     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; MIF/HEX Update       ; 00:00:01     ; 1.0                     ; 4737 MB             ; 00:00:01                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 4691 MB             ; 00:00:02                           ;
+; Total                ; 00:01:31     ; --                      ; --                  ; 00:01:58                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -125,6 +151,32 @@ refer to the applicable agreement for further details.
 ; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
 ; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
 ; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; MIF/HEX Update       ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; ICIN3PC04-W      ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -135,6 +187,32 @@ quartus_map --read_settings_files=on --write_settings_files=off GECKO -c GECKO
 quartus_fit --read_settings_files=off --write_settings_files=off GECKO -c GECKO
 quartus_asm --read_settings_files=off --write_settings_files=off GECKO -c GECKO
 quartus_sta GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
+quartus_cdb GECKO -c GECKO --update_mif
+quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
 quartus_cdb GECKO -c GECKO --update_mif
 quartus_asm --read_settings_files=on --write_settings_files=off GECKO -c GECKO
 quartus_cdb GECKO -c GECKO --update_mif

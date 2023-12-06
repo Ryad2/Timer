@@ -17,27 +17,35 @@ main:
 ; DO NOT CHANGE ANYTHING ABOVE THIS LINE
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+; WRITE YOUR CONSTANT DEFINITIONS AND main HERE
+    .equ		COUNTER,		0x1004
+    .equ		SPEND_TIME,		0x1008
+    
+    stw		zero,		COUNTER(zero)
+    stw		zero,		SPEND_TIME(zero)
+    addi		t0,		zero,		0xFF
+    stw		t0,		LEDs+12(zero)
+
     addi        sp,     sp,     LEDs
     addi		t0,		zero,		1
     wrctl		status,		t0
     addi		t0,		zero,		5
     wrctl	    ienable,		t0
     
-    addi        t0,		zero,		1
-    slli		t0,		zero,		22
-    addi        t0,		t0,		805695
-    stw         t0,		TIMER(zero)
+    addi		t0,		zero,	0x4C
+    slli		t0,		t0,		16
+    ori		    t0,		t0,		0x4B40
+    addi		t0,		t0,		-1
+    
+    stw         t0,		TIMER+4(zero)
+    addi		t0,		zero,		11
+    stw		    t0,		TIMER+8(zero)
     
     loop:
-        
+        add    zero,     zero,       zero
         br loop
-    ; WRITE YOUR CONSTANT DEFINITIONS AND main HERE
-
-.equ		COUNTER,		0x1004
-
 
 interrupt_handler:
-
     addi     sp,     sp,     -84; save the registers to the stack
     stw      ra,     0(sp)
     stw      s0,     4(sp)
@@ -61,50 +69,52 @@ interrupt_handler:
     stw      a2,     76(sp)
     stw      a3,     80(sp)
 
-    rdctl		t0,		ipending ; read the ipending register to identify the source
+    rdctl		t0,		ipending
     slli		t0,		t0,		29
-    blt		    t0,		zero,		buttons_routine ; call the corresponding routine
+    blt		    t0,		zero,		buttons_routine
     slli		t0,		t0,		2
     blt		    t0,		zero,		timer_routine
 
     br		return_from_exception
 
     buttons_routine:
-
-        ldw     t0,     4+BUTTONS(zero)
-        stw		zero,	4+BUTTONS(zero)
+        ldw     t0,     4+BUTTON(zero)
+        stw		zero,	4+BUTTON(zero)
 
         slli		t0,		t0,		31
-        blt		t0,		zero,		spend_time_label
+        bge		    t0,		zero,	branch_eret
 
-        br return_from_exception
-
-        spend_time_label:
-        addi		sp,		sp,		-4
-        stw		ea,		0(sp)
-        
         addi		t0,		zero,		1
-        wrctl		status,		t0
+        stw		    t0,		SPEND_TIME(zero)
+        addi		sp,		sp,		-4
+        stw		    ea,		0(sp)
+        addi		t0,		zero,	1
+        wrctl		status,	    t0
+        wrctl		ienable,    t0
         
         call		spend_time
         
-        wrctl		status,		zero
-        ldw		ea,		0(sp)
-        addi		sp,		sp,		4
-        
-        br return_from_exception
+        wrctl	    status,	    zero
+        ldw		    ea,		    0(sp)
+        addi	    sp,		    sp,		4
+        addi		t0,		zero,		5
+        wrctl		ienable,		t0
+        stw		    zero,		SPEND_TIME(zero)
+
+        branch_eret:
+            br return_from_exception
 
     timer_routine:
-        ldw     t0,     COUNTER(zero)
-        addi    t0,     t0,     1
-        stw     t0,     COUNTER(zero)
-        add    a0,     t0,   zero
-        call    display
-        ;increment timer
-
+        stw		    zero,	TIMER+12(zero)
+        ldw         a0,     COUNTER(zero)
+        addi        a0,     a0,     1
+        stw         a0,     COUNTER(zero)
+        
+        ldw         t0,     SPEND_TIME(zero)
+        bne         t0,     zero,   return_from_exception
+        call        display
 
     return_from_exception:
-
         ldw      ra,     0(sp)
         ldw      s0,     4(sp)
         ldw      s1,     8(sp)
@@ -126,7 +136,6 @@ interrupt_handler:
         ldw      a1,     72(sp)
         ldw      a2,     76(sp)
         ldw      a3,     80(sp)
-
         addi     sp,     sp,     84
 
         addi    ea,     ea,     -4 ; correct the exception return address

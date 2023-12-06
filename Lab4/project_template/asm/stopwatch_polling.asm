@@ -17,6 +17,8 @@ stw t0, LFSR(zero)
 .equ		CYCLES_100MS,		24999
 
 main:
+    addi		t0,		zero,		0xFF
+    stw		    t0,		LEDs+12(zero)
     addi		sp,		zero,		LEDs
     addi		s0,		zero,		CYCLES_100MS
     slli		s0,		s0,		1
@@ -74,10 +76,13 @@ main:
         ldw     t0,     4+BUTTON(zero)
         stw		zero,	4+BUTTON(zero)
         slli	t0,		t0,		31
-        blt		t0,		zero,		spend_time
+        bge		t0,		zero,		call_display
         
-        call		display
-        br		increment_loop
+        call		spend_time
+            
+        call_display:
+            call		display
+            br		increment_loop
         
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 ; DO NOT CHANGE ANYTHING BELOW THIS LINE
