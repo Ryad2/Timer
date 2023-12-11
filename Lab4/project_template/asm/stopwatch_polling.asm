@@ -14,7 +14,7 @@ stw t0, LFSR(zero)
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 ; WRITE YOUR CODE AND CONSTANT DEFINITIONS HERE
-.equ		CYCLES_100MS,		24999
+.equ		CYCLES_100MS,		23994
 
 main:
     addi		t0,		zero,		0xFF
@@ -71,16 +71,17 @@ main:
         addi		s1,		s1,		1
         addi		s0,		zero,   CYCLES_100MS
         slli		s0,		s0,		1
-        add		    a0,		s1,		zero
         
         ldw     t0,     4+BUTTON(zero)
-        stw		zero,	4+BUTTON(zero)
         slli	t0,		t0,		31
         bge		t0,		zero,		call_display
         
         call		spend_time
+        stw		zero,	4+BUTTON(zero)
+        addi		s1,		s1,		9
             
         call_display:
+            add		    a0,		s1,		zero
             call		display
             br		increment_loop
         
@@ -122,6 +123,9 @@ display:
     slli   t4, t4, 16
     add    t5, zero, zero
     addi   t6, zero, 4
+
+    ;101 cycle
+    
     minute_loop_s3:
     beq    zero, s0, minute_end
     beq    t6, t5, minute_s2
